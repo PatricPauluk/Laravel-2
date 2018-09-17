@@ -11,7 +11,7 @@
         Descrição: R$ {{$p->descricao or 'não tem descrição'}}
     </li>
     <li>
-        Quantidade em estoque: R$ {{$p->quantidade}}
+        Quantidade em estoque: {{$p->quantidade}}
     </li>
 </ul>
 @stop
