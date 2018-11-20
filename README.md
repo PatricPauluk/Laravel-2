@@ -1,2 +1,2 @@
-# Laravel-1
-Primeiro curso de Laravel da Alura.
+# Laravel-2
+Segundo curso de Laravel da Alura.
