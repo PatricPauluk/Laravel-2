@@ -13,11 +13,14 @@
         <td><!-- Envia o ID do produto selecionado para URL. -->
             <a href="/produtos/mostra/{{$p->id}}">Visualizar</a>
         </td>
+        <td>
+            <a href="/produtos/remove/{{$p->id}}">Remover</a>
+        </td>
     </tr>
     @endforeach
 </table>
 
-<!-- old('nome') - Busca o parâmetro da requisição antiga para exibir o nome do produto adicionado (caso houver.) -->
+<!-- old('nome') - Busca o parâmetro da requisição antiga (anterior) para exibir o nome do produto adicionado (caso houver.) -->
 @if(old('nome'))
     <p class="alert alert-success">Produto {{old('nome')}} adicionado</p>
 @endif
