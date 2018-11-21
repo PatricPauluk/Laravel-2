@@ -5,5 +5,5 @@
 
 
 <h1>Curso de Laravel - Alura</h1>
-<a href="/produtos">Listar</a>
-<a href="/produtos/novo">Novo Produto</a>
+<a class="btn btn-info" href="/produtos">Listar</a>
+<a class="btn btn-info" href="/produtos/novo">Novo Produto</a>

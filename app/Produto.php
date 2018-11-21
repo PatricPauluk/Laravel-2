@@ -14,5 +14,5 @@ class Produto extends Model
     public $timestamps = false;
     
     // Filtrar para apenas os valores que devem ser recebidos em um cadastro.
-    protected $fillable = array('nome', 'descricao', 'quantidade', 'valor');
+    protected $fillable = array('nome', 'descricao', 'quantidade', 'valor', 'tamanho');
 }

@@ -23,7 +23,7 @@ class ProdutoController extends Controller {
         // Melhor forma de se utilizar um 'SELECT * FROM produtos' utilizando Eloquent, após criar o novo model pelo terminal.
         $produtos = Produto::all();
         
-        // Retona a view desejada (no caso a listagem.php), enviando junto a variável $produtos.
+        // Retona a view desejada (no caso a listagem.blade.php), enviando junto a variável $produtos.
         // Os arquivos views se encontram no diretório "\resourse\views\".
         return view('listagem')->with('produtos', $produtos);
     }
