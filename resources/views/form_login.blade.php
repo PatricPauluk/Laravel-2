@@ -2,27 +2,6 @@
 
 @section('conteudo')
 
-
-<!-- 
-A <div> abaixo é responsável por exibir as mensagens de erro para o usuário (caso houver).
-Estas mensagens podem ser personalizadas no seu respectivo form request, inserindo a função (exemplo): 
-
-public function messages(){
-    return [
-        'required' => 'O :attribute é obrigatório.',
-        'numeric' => 'O :attribute deve ser apenas números.'
-    ];
-}
-    
--->
-<div class="alert alert-danger">
-    <ul>
-        @foreach($errors->all() as $error)
-        <li>{{$error}}</li>
-        @endforeach
-    </ul>
-</div>
-
 <form class="form-control" action="/login" method="post">
     <!-- Este input é necessário sempre que for utilizar envios através do metodo POST,
     visando evitar ataques de hackers. (Cross Site Forgery Request) -->

@@ -11,6 +11,8 @@
         <td> {{ $p->descricao }} </td>
         <td> {{ $p->tamanho }} </td>
         <td> {{ $p->quantidade }} </td>
+        <!-- A categoria é exibida desta forma, pois foi declarada dentro do model Produto -->
+        <td> {{ $p->categoria->nome }} </td>
         <td><!-- Envia o ID do produto selecionado para URL. -->
             <a href="/produtos/mostra/{{$p->id}}">Visualizar</a>
         </td>

@@ -4,7 +4,8 @@
 use Illuminate\Support\Facades\DB;
 use Request; // Necessário para realizar a requisição
 use Validator; // Necessário para validar os campos
-use estoque\Produto; // Necessário após criar o model pelo terminal
+use estoque\Produto; // Importa o model de Produto criado pelo terminal
+use estoque\Categoria; // Importa o model de Categoria criado pelo terminal
 use estoque\Http\Requests\ProdutoRequest; // Para utilizar o form request criado
 use Auth; // Necessário para autenticar login
 
@@ -99,7 +100,8 @@ class ProdutoController extends Controller {
     }
     
     public function novo(){
-        return view('formulario');
+        // Envia as categorias disponíveis dos produtos no banco de dados através do método 'with'.
+        return view('formulario')->with('categorias', Categoria::all());
     }
     
     public function adiciona(ProdutoRequest $request){

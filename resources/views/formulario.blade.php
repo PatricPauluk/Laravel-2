@@ -12,8 +12,7 @@ public function messages(){
         'required' => 'O :attribute é obrigatório.',
         'numeric' => 'O :attribute deve ser apenas números.'
     ];
-}
-    
+} 
 -->
 <div class="alert alert-danger">
     <ul>
@@ -22,6 +21,7 @@ public function messages(){
         @endforeach
     </ul>
 </div>
+
 
 <form class="form-control" action="/produtos/adiciona" method="post">
     <!-- Este input é necessário sempre que for utilizar envios através do metodo POST,
@@ -42,6 +42,15 @@ public function messages(){
     <div class="form-group">
         <label>Tamanho</label>
         <input name="tamanho" class="form-control" type="text"/>
+    </div>
+    <!-- Carrega as categorias de produtos do banco de dados -->
+    <div class="form-group">
+        <label>Categoria</label>
+        <select name="categoria_id" class="form-control">
+            @foreach($categorias as $c)
+                <option value="{{$c->id}}">{{$c->nome}}</option>
+            @endforeach
+        </select>
     </div>
     <div class="form-group">
         <label>Descrição</label>

@@ -14,5 +14,10 @@ class Produto extends Model
     public $timestamps = false;
     
     // Filtrar para apenas os valores que devem ser recebidos em um cadastro.
-    protected $fillable = array('nome', 'descricao', 'quantidade', 'valor', 'tamanho');
+    protected $fillable = array('nome', 'descricao', 'quantidade', 'valor', 'tamanho', 'categoria_id');
+    
+    // Adiciona uma categoria ao produto adicionado
+    public function categoria(){
+        return $this->belongsTo('estoque\Categoria');
+    }
 }
