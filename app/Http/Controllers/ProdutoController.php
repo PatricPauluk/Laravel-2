@@ -6,9 +6,10 @@ use Request; // Necessário para realizar a requisição
 use Validator; // Necessário para validar os campos
 use estoque\Produto; // Necessário após criar o model pelo terminal
 use estoque\Http\Requests\ProdutoRequest; // Para utilizar o form request criado
+use Auth; // Necessário para autenticar login
 
 /**
- * Outra forma de se utilizar Request ou validator sem realizar a importação acima:
+ * Outra forma de se utilizar Request (ou outro metodo) sem realizar a importação acima:
  * \Request::all();
  * Apenas inserir uma barra no inicio do código.
  */
@@ -17,17 +18,46 @@ use estoque\Http\Requests\ProdutoRequest; // Para utilizar o form request criado
 No caso: extends Controller. */
 class ProdutoController extends Controller {
     
+    /**
+     * A função construct abaixo, realiza uma verificação de login de forma geral, sem a necessidade de especificar
+     * em cada função a verificação, de forma trabalhosa.
+     * 
+     * Middlewares são encontrados em 'app/http/middleware'.
+     * A função foi definida em 'app/http/middleware/Autorizador.php'.
+     * Para funcionar corretamente após criada, todo middleware deve ser registrado em 'app\http\kernel.php'.
+     */
+    
+    public function __construct(){
+        $this->middleware('autorizador');
+    }
+    
     // Retorna a página principal.
     public function main(){
         return view('main');
     }
     
-    public function lista(){    
+    public function lista(){
+        
+        /**
+         * Verifica se o usuário esta logado para acessar a lista (forma simples).
+         * Caso não, o mesmo será identificado como um guest (convidado) e retorna para página de login:
+         * 
+         * if(Auth::guest()){
+         *    return redirect('/login');
+         * }
+         * 
+         * Esta forma acaba sendo muito trabalhosa, pois para funcionar corretamente deve ser re-definida em cada função.
+         * Então, ela foi inserida em um middleware, onde é verificada em cada página que acessar.
+         * Middlewares são encontrados em 'app/http/middleware'.
+         */
+        
         /**
          * Exemplo básico de como fazer um select no banco de dados pelo Laravel, apenas chamando a classe DB.
-         * Obs: A conexão só é realizada com sucesso após inserir os dados do banco no diretorio "\config\database.php".
          * $produtos = DB::select('SELECT * FROM produtos');
-         * "dd($produtos);" Mostra o array dos produtos na busca.
+         * Obs: A conexão só é realizada com sucesso após inserir os dados do banco no diretorio "\config\database.php".
+         * 
+         * Mostra o array dos produtos na busca:
+         * dd($produtos);
          */
         
         // Melhor forma de se utilizar um 'SELECT * FROM produtos' utilizando Eloquent, após criar o novo model pelo terminal.

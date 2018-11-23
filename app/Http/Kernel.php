@@ -13,6 +13,8 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
+    
+    // Middlewares registrados aqui SEMPRE serão executados, sem excessões.
     protected $middleware = [
         \estoque\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
@@ -50,6 +52,11 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
+    
+    /** 
+     * Middlewares aqui devem ser chamados em um '__construct()' para serem executados, como é o caso do 'autorizador'
+     * que foi chamado em ProdutoController.php, para verificar o login de usuário.
+     */
     protected $routeMiddleware = [
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
@@ -59,5 +66,6 @@ class Kernel extends HttpKernel
         'guest' => \estoque\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'autorizador' => \estoque\Http\Middleware\Autorizador::class, // Meu registro aqui
     ];
 }
